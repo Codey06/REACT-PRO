@@ -1,9 +1,9 @@
-import React from 'react'
-import "./Header.css"
+import React from "react";
+import "./Header.css";
 
-const Header = () => {
+function Header({ onToggleTheme, currentTheme }) {
   return (
-   <header className="header">
+    <header className="header">
       <div className="container">
         <h1 className="logo">Mustaf Ahmed</h1>
         <nav>
@@ -14,9 +14,13 @@ const Header = () => {
             <li><a href="#contact">Contact</a></li>
           </ul>
         </nav>
+
+        <button className="theme-toggle" onClick={onToggleTheme}>
+          {currentTheme === "light" ? "🌙" : "☀️"}
+        </button>
       </div>
     </header>
-  )
+  );
 }
 
-export default Header
+export default Header;
