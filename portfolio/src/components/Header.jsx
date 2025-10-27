@@ -7,7 +7,31 @@ const Header = () => {
   const [darkMode, setDarkMode] = useState(false);
   const [scrolled, setScrolled] = useState(false);
 
-  // ✅ Scroll detection & Active link
+  // ✅ Read saved dark mode from localStorage when component mounts
+  useEffect(() => {
+    const savedMode = localStorage.getItem("theme");
+    if (savedMode === "dark") {
+      setDarkMode(true);
+      document.body.classList.add("dark");
+    } else {
+      document.body.classList.add("light");
+    }
+  }, []);
+
+  // ✅ Save theme to localStorage when it changes
+  useEffect(() => {
+    if (darkMode) {
+      document.body.classList.add("dark");
+      document.body.classList.remove("light");
+      localStorage.setItem("theme", "dark");
+    } else {
+      document.body.classList.add("light");
+      document.body.classList.remove("dark");
+      localStorage.setItem("theme", "light");
+    }
+  }, [darkMode]);
+
+  // ✅ Scroll detection & Active link highlight
   useEffect(() => {
     const handleScroll = () => {
       const sections = document.querySelectorAll("section[id]");
@@ -27,11 +51,6 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
-  // ✅ Dark mode toggle
-  useEffect(() => {
-    document.body.className = darkMode ? "dark" : "light";
-  }, [darkMode]);
 
   const navLinks = [
     { name: "Home", id: "home" },
