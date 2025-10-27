@@ -1,0 +1,58 @@
+.contact {
+  background: var(--bg-color);
+  color: var(--text-color);
+  padding: 80px 20px;
+  text-align: center;
+  transition: background 0.3s ease;
+}
+
+.contact h2 {
+  font-size: 2rem;
+  color: var(--accent);
+  margin-bottom: 40px;
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.contact-form .btn {
+  align-self: center;
+  padding: 12px 30px;
+  font-weight: 600;
+  border-radius: 25px;
+  transition: transform 0.2s ease;
+}
+
+.contact-form .btn:hover {
+  transform: scale(1.05);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .contact-form {
+    gap: 15px;
+  }
+}

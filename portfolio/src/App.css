@@ -1,51 +1,32 @@
-body {
+/* ------------------------------
+  Global Reset & Base Styles
+------------------------------ */
+* {
   margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
   font-family: Arial, sans-serif;
-  background-color: #f5f5f5;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  transition: all 0.3s ease-in-out;
+  scroll-behavior: smooth; /* ✅ smooth scroll */
 }
 
 h1, h2, h3 {
-  color: #333;
+  color: var(--text-color);
 }
 
 section {
-  padding: 40px 20px;
+  padding: 80px 20px;
   text-align: center;
 }
-/* ✅ Responsive adjustments */
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    gap: 10px;
-  }
 
-  .nav-links {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .hero h1 {
-    font-size: 2rem;
-  }
-
-  .hero h2 {
-    font-size: 1.2rem;
-  }
-
-  .about-content {
-    flex-direction: column;
-  }
-
-  .projects-container {
-    grid-template-columns: 1fr;
-  }
-
-  .footer-content {
-    flex-direction: column;
-    gap: 10px;
-  }
-}
-/* ✅ Default Light Theme */
+/* ------------------------------
+  Light Theme
+------------------------------ */
 body.light {
   --bg-color: #f5f5f5;
   --text-color: #333;
@@ -53,7 +34,9 @@ body.light {
   --accent: #007bff;
 }
 
-/* 🌙 Dark Theme */
+/* ------------------------------
+  Dark Theme
+------------------------------ */
 body.dark {
   --bg-color: #121212;
   --text-color: #f5f5f5;
@@ -61,43 +44,261 @@ body.dark {
   --accent: #ffeb3b;
 }
 
-/* Apply global colors */
-body {
-  margin: 0;
-  font-family: Arial, sans-serif;
-  background-color: var(--bg-color);
-  color: var(--text-color);
-  transition: all 0.3s ease-in-out;
-}
-
-section {
-  padding: 40px 20px;
-  text-align: center;
-}
-
-h1, h2, h3 {
-  color: var(--text-color);
-}
-
-/* Buttons */
+/* ------------------------------
+  Buttons
+------------------------------ */
 .btn {
   background-color: var(--accent);
   color: #000;
-  padding: 10px 20px;
+  padding: 10px 25px;
   border-radius: 25px;
-  text-decoration: none;
   font-weight: bold;
-  transition: background 0.3s;
+  text-decoration: none;
+  transition: transform 0.2s ease, opacity 0.3s ease;
+  cursor: pointer;
 }
 
 .btn:hover {
+  transform: scale(1.05);
   opacity: 0.9;
 }
 
-/* Navbar Toggle Button */
-.theme-toggle {
-  background: none;
-  border: none;
+/* ------------------------------
+  Responsive Adjustments
+------------------------------ */
+@media (max-width: 768px) {
+  section {
+    padding: 60px 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.6rem;
+  }
+
+  h3 {
+    font-size: 1.2rem;
+  }
+
+  .btn {
+    padding: 8px 20px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ------------------------------
+  Utility Classes (Flex, Grid, Containers)
+------------------------------ */
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  gap: 25px;
+}
+
+/* ------------------------------
+  Hero Section
+------------------------------ */
+.hero {
+  min-height: 90vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero h1 {
+  font-size: 2.8rem;
+}
+
+.hero h2 {
   font-size: 1.5rem;
-  cursor: pointer;
+  margin: 15px 0;
+}
+
+/* ------------------------------
+  About Section
+------------------------------ */
+.about-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+  flex-wrap: wrap;
+}
+
+.profile-pic {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+  transition: transform 0.4s ease;
+}
+
+.profile-pic:hover {
+  transform: scale(1.05);
+}
+
+/* ------------------------------
+  Projects Section
+------------------------------ */
+.projects-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+.project-card {
+  background: var(--card-bg);
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+/* ------------------------------
+  Skills Section
+------------------------------ */
+.skills-container {
+  max-width: 800px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.skill-name {
+  display: flex;
+  justify-content: space-between;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.skill-bar {
+  width: 100%;
+  height: 12px;
+  background: var(--card-bg);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.skill-progress {
+  height: 100%;
+  background: var(--accent);
+  border-radius: 10px;
+}
+
+/* ------------------------------
+  Contact Section
+------------------------------ */
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  padding: 12px 15px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  background: var(--card-bg);
+  color: var(--text-color);
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  outline: none;
+  border-color: var(--accent);
+  box-shadow: 0 0 8px rgba(0,123,255,0.3);
+}
+
+/* ------------------------------
+  Footer Section
+------------------------------ */
+.footer {
+  background: var(--card-bg);
+  color: var(--text-color);
+  text-align: center;
+  padding: 25px 20px;
+  box-shadow: 0 -2px 10px rgba(0,0,0,0.05);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.footer-links {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.footer-links a {
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+  color: var(--accent);
+}
+
+/* ------------------------------
+  Responsive Tweaks
+------------------------------ */
+@media (max-width: 768px) {
+  .about-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+
+  .projects-container {
+    grid-template-columns: 1fr;
+  }
+
+  .skills-container {
+    gap: 20px;
+  }
+
+  .skill-bar {
+    height: 10px;
+  }
+
+  .footer-links {
+    gap: 15px;
+    font-size: 0.9rem;
+  }
 }
