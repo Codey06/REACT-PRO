@@ -1,27 +1,36 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { remark } from 'remark'
-import html from 'remark-html'
 
-const postsDir = path.join(process.cwd(), 'posts')
+const postsDirectory = path.join(process.cwd(), 'posts')
 
-export function getPostSlugs() {
-  return fs.readdirSync(postsDir).filter(f => f.endsWith('.md'))
+// Hel dhamaan posts
+export function getAllPosts() {
+  const fileNames = fs.readdirSync(postsDirectory)
+
+  return fileNames.map((fileName) => {
+    const slug = fileName.replace(/\.md$/, '')
+    const fullPath = path.join(postsDirectory, fileName)
+    const fileContents = fs.readFileSync(fullPath, 'utf8')
+    const matterResult = matter(fileContents)
+
+    return {
+      slug,
+      title: matterResult.data.title || slug,
+      date: matterResult.data.date || null,
+    }
+  })
 }
 
-export async function getPostBySlug(slug) {
-  const realSlug = slug.replace(/\.md$/, '')
-  const fullPath = path.join(postsDir, `${realSlug}.md`)
-  const fileContents = fs.readFileSync(fullPath, 'utf8')
-  const { data, content } = matter(fileContents)
-  const processed = await remark().use(html).process(content)
-  const contentHtml = processed.toString()
-  return { slug: realSlug, frontmatter: data, content: contentHtml }
-}
+// Hel hal post
+export function getPostBySlug(slug) {
+  const fullPath = path.join(postsDirectory, `${slug}.md`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8') // <-- meesha uu error-ka ka yimaado
+  const matterResult = matter(fileContents)
 
-export async function getAllPosts() {
-  const slugs = getPostSlugs()
-  const posts = await Promise.all(slugs.map(s => getPostBySlug(s)))
-  return posts.sort((a,b) => new Date(b.frontmatter.date) - new Date(a.frontmatter.date))
+  return {
+    slug,
+    content: matterResult.content,
+    ...matterResult.data,
+  }
 }
