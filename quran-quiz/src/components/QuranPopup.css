@@ -1,0 +1,198 @@
+/* src/components/QuranPopup.css */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background: var(--bg-card);
+  border-radius: 15px;
+  width: 90%;
+  max-width: 600px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+  border: 1px solid var(--border-color);
+}
+
+.popup-header {
+  background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+  color: white;
+  padding: 20px;
+  border-radius: 15px 15px 0 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.popup-header h3 {
+  margin: 0;
+  font-size: 1.4rem;
+}
+
+.close-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.close-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  transform: rotate(90deg);
+}
+
+.popup-body {
+  padding: 25px;
+}
+
+.surah-info {
+  background: var(--bg-secondary);
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  border: 1px solid var(--border-color);
+}
+
+.surah-info p {
+  margin: 8px 0;
+  color: var(--text-primary);
+}
+
+.quran-text {
+  line-height: 2;
+  font-size: 1.1rem;
+  text-align: center;
+  color: var(--text-primary);
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border: 1px solid var(--border-color);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .popup-content {
+    width: 95%;
+    margin: 20px;
+  }
+  
+  .popup-header h3 {
+    font-size: 1.2rem;
+  }
+}
+
+/* src/components/QuranPopup.css - ADD THESE STYLES */
+
+.arabic-text {
+  direction: rtl;
+  text-align: right;
+  font-family: 'Traditional Arabic', 'Scheherazade', 'Lateef', serif;
+  font-size: 1.4rem;
+  line-height: 2.5;
+  margin-bottom: 20px;
+  padding: 20px;
+  background: var(--bg-secondary);
+  border-radius: 10px;
+  border-right: 4px solid var(--primary-color);
+}
+
+.quran-verse {
+  margin: 15px 0;
+  padding: 10px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.quran-verse:last-child {
+  border-bottom: none;
+}
+
+.translation {
+  background: var(--bg-primary);
+  padding: 15px;
+  border-radius: 8px;
+  border-left: 4px solid var(--accent-color);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.translation em {
+  color: var(--primary-color);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* Audio player styles */
+.audio-player {
+  margin-top: 20px;
+  padding: 15px;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  text-align: center;
+}
+
+.audio-player button {
+  background: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  margin: 0 10px;
+  transition: all 0.3s ease;
+}
+
+.audio-player button:hover {
+  background: var(--secondary-color);
+  transform: translateY(-2px);
+}
+
+/* Responsive text */
+@media (max-width: 768px) {
+  .arabic-text {
+    font-size: 1.2rem;
+    line-height: 2;
+  }
+  
+  .quran-verse {
+    margin: 10px 0;
+  }
+}
+
+/* Add to QuranPopup.css */
+.loading {
+  text-align: center;
+  padding: 40px;
+  color: var(--text-secondary);
+  font-size: 1.1rem;
+}
+
+.verse-number {
+  background: var(--primary-color);
+  color: white;
+  padding: 2px 8px;
+  border-radius: 50%;
+  font-size: 0.8rem;
+  margin-left: 10px;
+  display: inline-block;
+  min-width: 25px;
+  text-align: center;
+}
